@@ -1,0 +1,33 @@
+Variable,Main Type,Sub-Type,Credit Risk Meaning,Suggested Treatment
+cb_person_cred_hist_length,Numerical,Continuous,"Raw scale measure of affordability, capacity or loan economics",Retain; skewed amounts may use log1p; scale in preprocessing
+cb_person_default_on_file,Categorical,Binary,Discrete borrower attributes influencing risk,"Map to {0,1}; no one-hot explosion"
+city,Dropped,Identifier / geo,Not used as predictive inputs in our pipeline,Drop before modelling (`DROP_COLS`)
+city_latitude,Dropped,Identifier / geo,Not used as predictive inputs in our pipeline,Drop before modelling (`DROP_COLS`)
+city_longitude,Dropped,Identifier / geo,Not used as predictive inputs in our pipeline,Drop before modelling (`DROP_COLS`)
+client_ID,Dropped,Identifier / geo,Not used as predictive inputs in our pipeline,Drop before modelling (`DROP_COLS`)
+country,Categorical,Nominal,Non-ordered segments (segmentation / structure effects),One-hot encoding with `drop_first=True` to avoid dummy trap
+credit_utilization_ratio,Derived,Ratio / transformed,Delinquencies vs open accounts proxy — revolving stress / misuse,Retain as numeric ratio; Winsor outliers; interpret monotonic lift with PD
+debt_to_income_ratio,Derived,Ratio / transformed,Aggregate debt servicing pressure vs income — core affordability signal,Retain as numeric ratio; Winsor outliers; interpret monotonic lift with PD
+education_level,Categorical,Ordinal ordered,Monotonic ordinal credit / education ladders,Ordinal integer mapping preserves order → then scale with other numerics
+employment_type,Categorical,Nominal,Non-ordered segments (segmentation / structure effects),One-hot encoding with `drop_first=True` to avoid dummy trap
+gender,Categorical,Binary,Discrete borrower attributes influencing risk,"Map to {0,1}; no one-hot explosion"
+loan_amnt,Numerical,Continuous,"Raw scale measure of affordability, capacity or loan economics",Retain; skewed amounts may use log1p; scale in preprocessing
+loan_grade,Categorical,Ordinal ordered,Monotonic ordinal credit / education ladders,Ordinal integer mapping preserves order → then scale with other numerics
+loan_int_rate,Numerical,Continuous,"Raw scale measure of affordability, capacity or loan economics",Retain; skewed amounts may use log1p; scale in preprocessing
+loan_intent,Categorical,Nominal,Non-ordered segments (segmentation / structure effects),One-hot encoding with `drop_first=True` to avoid dummy trap
+loan_percent_income,Derived,Ratio / transformed,Installment burden relative to nominal income proxy,Retain as numeric ratio; Winsor outliers; interpret monotonic lift with PD
+loan_status,Target,Binary (0/1),Historical default outcome for supervised modelling,Exclude from features; stratify splits; never treat as continuous outlier check
+loan_term_months,Numerical,Continuous,"Raw scale measure of affordability, capacity or loan economics",Retain; skewed amounts may use log1p; scale in preprocessing
+loan_to_income_ratio,Derived,Ratio / transformed,loan_amnt divided by income — leverage / debt capacity constraint,Retain as numeric ratio; Winsor outliers; interpret monotonic lift with PD
+marital_status,Categorical,Nominal,Non-ordered segments (segmentation / structure effects),One-hot encoding with `drop_first=True` to avoid dummy trap
+monthly_payment_to_income,Derived,Continuous ratio,Estimated monthly payment vs monthly income — cashflow sufficiency,Include; quartile default-rate stress test; scale in modelling
+open_accounts,Numerical,Discrete / count,Count of credit lines — exposure breadth,Keep as nonnegative counts; Winsor rare extremes if justified
+other_debt,Numerical,Continuous,"Raw scale measure of affordability, capacity or loan economics",Retain; skewed amounts may use log1p; scale in preprocessing
+past_delinquencies,Numerical,Discrete / count,Historical delinquency count — repayment stress indicator,Keep as nonnegative counts; Winsor rare extremes if justified
+person_age,Numerical,Continuous,"Raw scale measure of affordability, capacity or loan economics",Retain; skewed amounts may use log1p; scale in preprocessing
+person_emp_length,Numerical,Continuous,"Raw scale measure of affordability, capacity or loan economics",Retain; skewed amounts may use log1p; scale in preprocessing
+person_home_ownership,Categorical,Nominal,Non-ordered segments (segmentation / structure effects),One-hot encoding with `drop_first=True` to avoid dummy trap
+person_income,Numerical,Continuous,"Raw scale measure of affordability, capacity or loan economics",Retain; skewed amounts may use log1p; scale in preprocessing
+severe_default_history,Derived,Binary flag (0/1),Prior delinquency count > 0 OR flag Y on credit-bureau default field,Include in model as 0/1; interpret as structural risk driver
+state,Dropped,Identifier / geo,Not used as predictive inputs in our pipeline,Drop before modelling (`DROP_COLS`)
+vulnerable_borrower,Derived,Binary flag (0/1),High debt-to-income renter — stacked affordability + housing tenure stress,Include in model as 0/1; monitor segment default rates

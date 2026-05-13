@@ -1,0 +1,33 @@
+Variable,Encoding / transformation,Reason (brief)
+cb_person_cred_hist_length,Scaling (StandardScaler),Continuous features scaled using train statistics only
+cb_person_default_on_file,Binary mapping,"Two-level categories → {0,1}"
+city,Dropped,Removed before modelling to avoid noise / dimensionality
+city_latitude,Dropped,Removed before modelling to avoid noise / dimensionality
+city_longitude,Dropped,Removed before modelling to avoid noise / dimensionality
+client_ID,Dropped,Removed before modelling to avoid noise / dimensionality
+country,One-hot (drop_first),Nominal categories; drop_first avoids full-rank collinearity
+credit_utilization_ratio,Scaling (StandardScaler),Ratios can be skewed; scaling improves linear separability
+debt_to_income_ratio,Scaling (StandardScaler),Ratios can be skewed; scaling improves linear separability
+education_level,Ordinal mapping + scaling,Preserves order (grade / education ladder); map to integers
+employment_type,One-hot (drop_first),Nominal categories; drop_first avoids full-rank collinearity
+gender,Binary mapping,"Two-level categories → {0,1}"
+loan_amnt,Log1p + scaling,Heavy-tailed amounts; log1p stabilizes variance then StandardScaler in train split
+loan_grade,Ordinal mapping + scaling,Preserves order (grade / education ladder); map to integers
+loan_int_rate,Scaling (StandardScaler),Continuous features scaled using train statistics only
+loan_intent,One-hot (drop_first),Nominal categories; drop_first avoids full-rank collinearity
+loan_percent_income,Scaling (StandardScaler),Ratios can be skewed; scaling improves linear separability
+loan_status,None (target),Label only — not encoded as a feature column
+loan_term_months,Scaling (StandardScaler),Continuous features scaled using train statistics only
+loan_to_income_ratio,Scaling (StandardScaler),Ratios can be skewed; scaling improves linear separability
+marital_status,One-hot (drop_first),Nominal categories; drop_first avoids full-rank collinearity
+monthly_payment_to_income,Scaling (StandardScaler),Engineered numeric / binary — included after FE step; scale with other numerics
+open_accounts,Scaling (StandardScaler),Count features treated as numeric; scale for linear models
+other_debt,Log1p + scaling,Heavy-tailed amounts; log1p stabilizes variance then StandardScaler in train split
+past_delinquencies,Scaling (StandardScaler),Count features treated as numeric; scale for linear models
+person_age,Scaling (StandardScaler),Continuous features scaled using train statistics only
+person_emp_length,Scaling (StandardScaler),Continuous features scaled using train statistics only
+person_home_ownership,One-hot (drop_first),Nominal categories; drop_first avoids full-rank collinearity
+person_income,Log1p + scaling,Heavy-tailed amounts; log1p stabilizes variance then StandardScaler in train split
+severe_default_history,Scaling (StandardScaler),Engineered numeric / binary — included after FE step; scale with other numerics
+state,Dropped,Removed before modelling to avoid noise / dimensionality
+vulnerable_borrower,Scaling (StandardScaler),Engineered numeric / binary — included after FE step; scale with other numerics

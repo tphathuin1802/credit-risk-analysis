@@ -1,0 +1,2 @@
+file,n_rows,n_columns,missing_cells_total,duplicate_rows,has_target_loan_status,has_all_three_new_features
+dataset_final_model_ready.csv,32581,41,0,0,True,True

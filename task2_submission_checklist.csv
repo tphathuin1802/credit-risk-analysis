@@ -1,0 +1,7 @@
+Item,Deliverable,Artifact(s)
+1,Variable classification table,task2_variable_classification.csv
+2,Encoding / transformation strategy table,task2_encoding_strategy.csv
+3,"Predictive relevance (corr, DR tables, LR AUC base vs enhanced)",task2_new_feature_correlations.csv; task2_default_rate_severe_x_vulnerable.csv; task2_default_rate_mpti_quartiles.csv; task2_logreg_base_vs_enhanced_auc.csv
+4,Final model-ready export,dataset_final_model_ready.csv
+5,Preliminary models labelled,Markdown trước cell training
+6,Final quality check,task2_final_quality_check.csv

@@ -1,0 +1,4 @@
+feature,corr_with_loan_status_pearson
+severe_default_history,0.08153420386683746
+vulnerable_borrower,0.37398135408424454
+monthly_payment_to_income,0.25568412706119426
